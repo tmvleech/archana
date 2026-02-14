@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Happy Birthday 🎉</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: pop 1.5s ease infinite alternate;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+
+        @keyframes pop {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .balloons {
+            position: absolute;
+            bottom: -100px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .balloon {
+            width: 50px;
+            height: 70px;
+            background: red;
+            border-radius: 50%;
+            position: relative;
+            animation: float 6s infinite ease-in;
+        }
+
+        .balloon::after {
+            content: '';
+            width: 2px;
+            height: 40px;
+            background: white;
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+        }
+
+        .balloon:nth-child(2) { background: yellow; animation-duration: 7s; }
+        .balloon:nth-child(3) { background: blue; animation-duration: 8s; }
+        .balloon:nth-child(4) { background: green; animation-duration: 9s; }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-110vh); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>🎉 Happy Birthday, [Name]! 🎂</h1>
+    <p>May your day be filled with love, laughter, and unforgettable moments 💖</p>
+    <p>Wishing you happiness today and always ✨</p>
+</div>
+
+<div class="balloons">
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+</div>
+
+</body>
+</html>
