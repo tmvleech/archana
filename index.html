@@ -15,14 +15,14 @@
 body{
     height:100vh;
     overflow:hidden;
-    background:linear-gradient(135deg,#ff0844,#ffb199);
+    background:linear-gradient(135deg,#ff0844,#ff6a88);
     display:flex;
     justify-content:center;
     align-items:center;
     color:white;
 }
 
-/* Intro */
+/* Intro Screen */
 #intro{
     position:fixed;
     width:100%;
@@ -46,7 +46,7 @@ body{
     100%{transform:scale(1);}
 }
 
-/* Card */
+/* Main Card */
 .card{
     position:relative;
     background:rgba(255,255,255,0.15);
@@ -58,6 +58,7 @@ body{
     width:90%;
     max-width:500px;
     z-index:2;
+    display:none;
 }
 
 .photo{
@@ -69,7 +70,9 @@ body{
     margin-bottom:20px;
 }
 
-h1{font-size:1.9rem;}
+h1{
+    font-size:1.9rem;
+}
 
 .buttons{
     margin-top:30px;
@@ -135,43 +138,37 @@ button{
     }
 }
 
-/* YES SCREEN */
+/* YES Celebration Screen */
 #yesScreen{
     position:fixed;
     width:100%;
     height:100%;
-    background:linear-gradient(135deg,#ff0844,#ff6a88);
+    background:linear-gradient(135deg,#ff0844,#ffb199);
     display:none;
     justify-content:center;
     align-items:center;
     flex-direction:column;
     text-align:center;
-    animation:fadeIn 1s ease;
 }
 
 #yesScreen img{
-    width:220px;
+    width:230px;
     border-radius:20px;
     margin-bottom:20px;
     box-shadow:0 10px 40px rgba(0,0,0,0.5);
 }
-
-@keyframes fadeIn{
-    from{opacity:0;}
-    to{opacity:1;}
-}
-
-iframe{display:none;}
 </style>
 </head>
 
 <body>
 
+<!-- Intro -->
 <div id="intro">
     <h1>Tap To Start Love Story 💖</h1>
 </div>
 
-<div class="card" style="display:none;">
+<!-- Main Card -->
+<div class="card">
     <img src="IMG-20260214-WA0001.jpg" class="photo">
     <h1>Archana ❤️<br>Will You Be My Valentine?</h1>
 
@@ -183,18 +180,17 @@ iframe{display:none;}
     <div id="message"></div>
 </div>
 
-<!-- YES Celebration Screen -->
+<!-- YES Screen -->
 <div id="yesScreen">
     <img src="IMG-20260214-WA0002.jpg">
     <h1>She Said YESSSS 💍❤️</h1>
     <p>Officially Archana & Me Forever 💞✨</p>
 </div>
 
-<!-- Music -->
-<iframe id="music"
-src="https://www.youtube.com/embed/_WvXWqKk9oE?autoplay=1&loop=1&playlist=_WvXWqKk9oE"
-allow="autoplay">
-</iframe>
+<!-- Background Music From Repo -->
+<audio id="bgMusic" loop>
+    <source src="Kaifi Khalil - Kahani Suno 2.0.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 const intro=document.getElementById("intro");
@@ -204,14 +200,16 @@ const yesBtn=document.getElementById("yesBtn");
 const message=document.getElementById("message");
 const btnArea=document.getElementById("btnArea");
 const yesScreen=document.getElementById("yesScreen");
+const bgMusic=document.getElementById("bgMusic");
 
+/* Start Page */
 intro.addEventListener("click",()=>{
     intro.style.display="none";
     card.style.display="block";
-    document.getElementById("music").style.display="block";
+    bgMusic.play();
 });
 
-/* YOUR CUSTOM DRAMATIC LINES */
+/* Dramatic No Lines */
 const lines=[
 "Sachi? 🥺",
 "Hein? 😢",
@@ -222,6 +220,7 @@ const lines=[
 "Ab mein roo paduga 😭"
 ];
 
+/* Move No Button Inside Area */
 function moveButton(){
     const areaWidth=btnArea.clientWidth-noBtn.clientWidth;
     const areaHeight=btnArea.clientHeight-noBtn.clientHeight;
@@ -238,13 +237,14 @@ function moveButton(){
 noBtn.addEventListener("mouseover",moveButton);
 noBtn.addEventListener("click",moveButton);
 
+/* Yes Click */
 yesBtn.addEventListener("click",()=>{
     card.style.display="none";
     yesScreen.style.display="flex";
     launchFireworks();
 });
 
-/* Floating hearts */
+/* Floating Hearts */
 function createHearts(){
     const heart=document.createElement("div");
     heart.className="heart";
@@ -258,7 +258,7 @@ setInterval(createHearts,300);
 
 /* Fireworks */
 function launchFireworks(){
-    for(let i=0;i<50;i++){
+    for(let i=0;i<60;i++){
         const fw=document.createElement("div");
         fw.className="firework";
         fw.style.background=`hsl(${Math.random()*360},100%,60%)`;
